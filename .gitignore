@@ -1,0 +1,7 @@
+/node_modules
+/.idea
+/server
+/dist
+/.nyc_output
+/coverage
+package-lock.json

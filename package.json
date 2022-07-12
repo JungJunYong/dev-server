@@ -1,0 +1,80 @@
+{
+  "name": "dev-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/app.js",
+  "types": "./types",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "start": "NODE_ENV=production node .",
+    "dev": "nodemon",
+    "start:dev": "node -r ts-node/register src/app.ts",
+    "lint": "eslint --ext .ts ./src/**/* --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^16.0.1",
+    "events": "^3.3.0",
+    "figlet": "^1.5.0",
+    "http-proxy": "^1.18.1",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.4.0",
+    "koa-send": "^5.0.1",
+    "koa-session": "^6.2.0",
+    "path": "^0.12.7",
+    "rmraf": "^1.0.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/events": "^3.0.0",
+    "@types/http-proxy": "^1.17.9",
+    "@types/koa": "^2.13.4",
+    "@types/koa-send": "^4.1.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4",
+    "tsconfig-paths": "^3.9.0",
+    "unionfs": "^4.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/**/*",
+      "node_modules",
+      "dist/**/*"
+    ],
+    "watch": [
+      "src",
+      ".env"
+    ],
+    "exec": "npm run start:dev",
+    "ext": "ts"
+  },
+  "files": [
+    "package.json",
+    ".env",
+    "dist/**/*"
+  ]
+}
